@@ -1239,10 +1239,23 @@
   html[data-theme="steep"] .theme-btn { background: var(--paper-lo); border-color: transparent; color: var(--ink); }
   html[data-theme="steep"] .logo .mark { stroke: var(--ink); }
 
-  /* the light/dark switch: sun while dark, moon while light */
-  .theme-btn .t-light, .theme-btn .t-amoled, .theme-btn .t-mono { display: none; }
-  html[data-theme="amber"] .theme-btn .t-light, html[data-theme="steep"] .theme-btn .t-amoled { display: block; }
-  #app .theme-btn { width: 40px; height: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,.1); background: var(--surface); box-shadow: var(--gloss); color: var(--fg); }
+  /* the light/dark switch: a sliding pill with both icons, the knob sits on the active mode */
+  html .theme-btn, html #app .theme-btn { position: relative; flex: none; width: 64px; height: 34px; padding: 0 9px; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: space-between; cursor: pointer; transform: none;
+    border: 1px solid rgba(255,255,255,.12); background: #1d1d1f; color: #9b9ba1; box-shadow: inset 0 1px 2px rgba(0,0,0,.4); }
+  html .theme-btn::before { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%;
+    background: linear-gradient(145deg, #ffcf6e, #e5900f 60%, #9a4f05); box-shadow: 0 2px 8px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,240,210,.6);
+    transform: translateX(30px); transition: transform .35s cubic-bezier(.22,1,.36,1), background .35s; }
+  html .theme-btn svg, html .theme-btn .t-light, html .theme-btn .t-amoled { display: block; position: relative; z-index: 1; width: 14px; height: 14px; transition: color .3s; }
+  html .theme-btn .t-mono { display: none; }
+  html[data-theme="amber"] .theme-btn .t-amoled { color: #1a0e00; }
+  html[data-theme="steep"] .theme-btn, html[data-theme="steep"] #app .theme-btn { background: #f2f2f3; border-color: #ececec; color: #6b6f7a; box-shadow: inset 0 1px 2px rgba(0,0,0,.06); }
+  html[data-theme="steep"] .theme-btn::before { transform: translateX(0); background: #17191c; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+  html[data-theme="steep"] .theme-btn .t-light { color: #fff; }
+  html .theme-btn:hover { border-color: rgba(245,165,36,.5); }
+  html[data-theme="steep"] .theme-btn:hover { border-color: #17191c; }
+  html .theme-btn:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { html .theme-btn::before { transition: none; } }
 </style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Figtree:wght@400;500;600&display=swap">
@@ -1255,7 +1268,7 @@
     <div class="nav-links">
       <a href="#features">Features</a><a href="#privacy">Privacy</a><a href="#get">Get it</a>
     </div>
-    <div class="nav-right"><button class="theme-btn" type="button" data-theme-toggle aria-label="Switch between light and dark" title="Light or dark"><svg class="t-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="t-amoled" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="t-mono" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button><a class="pill open-app" href="#app">Open People</a></div>
+    <div class="nav-right"><button class="theme-btn" type="button" data-theme-toggle role="switch" aria-checked="false" aria-label="Light mode" title="Light or dark"><svg class="t-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="t-amoled" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="t-mono" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button><a class="pill open-app" href="#app">Open People</a></div>
   </nav>
 
   <div class="hero gutter">
@@ -1356,7 +1369,7 @@
 </section>
 
 <footer class="gutter">
-  <div class="inner"><div class="logo" style="font-size:1rem"><svg class="mark" viewBox="0 0 26 18" aria-hidden="true"><circle class="r1" cx="9" cy="9" r="6.6"/><circle class="r2" cx="17" cy="9" r="6.6"/></svg> People</div><span style="display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap"><span>© 2026 People · Your contacts stay on your device · <a href="privacy.html" style="color:inherit">Privacy</a> · <a href="terms.html" style="color:inherit">Terms</a></span><button class="theme-btn" type="button" data-theme-toggle aria-label="Switch between light and dark" title="Light or dark"><svg class="t-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="t-amoled" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="t-mono" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button></span></div>
+  <div class="inner"><div class="logo" style="font-size:1rem"><svg class="mark" viewBox="0 0 26 18" aria-hidden="true"><circle class="r1" cx="9" cy="9" r="6.6"/><circle class="r2" cx="17" cy="9" r="6.6"/></svg> People</div><span style="display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap"><span>© 2026 People · Your contacts stay on your device · <a href="privacy.html" style="color:inherit">Privacy</a> · <a href="terms.html" style="color:inherit">Terms</a></span><button class="theme-btn" type="button" data-theme-toggle role="switch" aria-checked="false" aria-label="Light mode" title="Light or dark"><svg class="t-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="t-amoled" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="t-mono" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button></span></div>
 </footer>
 
 <!-- ================= THE PEOPLE DASHBOARD ================= -->
@@ -1367,7 +1380,7 @@
     
     <nav class="am-tabs" id="am-tabs" aria-label="Views"></nav><button class="am-ic am-first" id="a-add-top" type="button" aria-label="Add person" title="Add person"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20a6.5 6.5 0 0 1 11-4.7"/><path d="M18 14v6M15 17h6"/></svg></button>
     <button class="a-help am-ic" id="a-help" type="button" aria-label="How to add contacts" title="How to add contacts"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 0 1 4.8.8c0 1.7-2.4 2.2-2.4 3.6"/><path d="M12 17h.01"/></svg></button>
-    <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch between light and dark" title="Light or dark"><svg class="t-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="t-amoled" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="t-mono" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+    <button class="theme-btn" type="button" data-theme-toggle role="switch" aria-checked="false" aria-label="Light mode" title="Light or dark"><svg class="t-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="t-amoled" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="t-mono" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
     <button class="a-avatar" id="a-avatar" type="button" title="Settings" aria-label="Settings">?</button>
   </header>
   <div class="a-body">
@@ -3054,6 +3067,7 @@
     document.documentElement.setAttribute("data-theme", light ? "steep" : "amber");
     var mt = document.querySelector('meta[name="theme-color"]'); if (mt) mt.setAttribute("content", light ? "#ffffff" : "#0b0b0c");
     document.querySelectorAll('input[name="theme-pick"]').forEach(function(r){ r.checked = r.value === themePref(); });
+    document.querySelectorAll('[data-theme-toggle]').forEach(function(b){ b.setAttribute('aria-checked', light ? 'true' : 'false'); });
     if (window.__forestTheme) window.__forestTheme();
   }
   function setTheme(t){ store.theme = t; save(); applyTheme(); toast(THEME_NAMES[t] || "Theme updated"); }
