@@ -7,11 +7,11 @@
 <meta name="description" content="Your contacts in one quiet, beautiful place. See who you're close to, notice who you've drifted from, and keep everything on your device.">
 <meta name="theme-color" content="#0b0b0c">
 <script>
-/* Light (Orson parchment) or dark (amber) theme, picked before first paint. "" = follow the device. */
+/* Light (Steep white and peach) or dark (amber) theme, picked before first paint. "" = follow the device. */
 (function(){ var t = ""; try { t = (JSON.parse(localStorage.getItem("people-dashboard-v1") || "{}").theme) || ""; } catch(e) {}
   if (t !== "light" && t !== "dark") t = (window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", t === "light" ? "orson" : "amber");
-  if (t === "light") document.querySelector('meta[name="theme-color"]').setAttribute("content", "#f0ebdd"); })();
+  document.documentElement.setAttribute("data-theme", t === "light" ? "steep" : "amber");
+  if (t === "light") document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff"); })();
 </script>
 <meta name="google-site-verification" content="59d_5aGUZx0r8Pjq5y_oH9rcMwgvf76Em2FNqC3rOVg" />
 <link rel="manifest" href="manifest.webmanifest">
@@ -1120,115 +1120,128 @@
   .headline { text-wrap: balance; }
   @media (max-width: 640px) { .pva .pva-ic { display: none; } }
 
-  /* ================= light theme: Orson parchment (pairs with dark amber) =================
-     Parchment canvas, inkwell text, one golden glow. Amber stays the accent; ink replaces silver. */
-  html[data-theme="orson"], html[data-theme="orson"] #app, html[data-theme="orson"] #sheet, html[data-theme="orson"] #toast, html[data-theme="orson"] #scrim {
-    --paper: #f0ebdd; --paper-hi: #f8f4ea; --paper-lo: #e8e1cd; --ink: #302f2c; --glow: #ffc738;
-    --background: 44 38% 90%; --foreground: 45 4% 18%; --primary: 45 4% 18%; --primary-foreground: 44 38% 90%;
-    --secondary: 44 30% 86%; --muted-foreground: 44 7% 35%; --accent: 36 100% 27%; --border: 44 20% 80%;
-    --bg: var(--paper-hi); --fg: var(--ink); --mut: #5f5b51; --faint: #8c8778;
-    --acc: #8a5300; --acc-soft: rgba(255,199,56,.22); --acc-2: #b8740a;
-    --bord: rgba(48,47,44,.12); --sec: var(--paper-lo); --good: hsl(152 45% 28%); --rose: hsl(0 55% 42%); --rose-soft: hsl(0 55% 93%);
-    --shadow-dash: 0 0 0 1px rgba(48,47,44,.08), 0 24px 60px -24px rgba(90,70,30,.28);
-    --t1-bg: hsl(40 70% 88%); --t1-fg: hsl(36 80% 26%); --t2-bg: hsl(205 35% 89%); --t2-fg: hsl(205 45% 28%);
-    --t3-bg: hsl(0 45% 91%); --t3-fg: hsl(0 45% 34%); --t4-bg: hsl(150 25% 88%); --t4-fg: hsl(152 40% 24%);
-    --wa: hsl(142 64% 26%); --wa-soft: hsl(142 40% 90%); --scrim: rgba(48,40,25,.32);
-    --surface: linear-gradient(180deg, #fbf8f0, #f3eee1);
-    --gloss: inset 0 1px 0 rgba(255,255,255,.9), 0 1px 2px rgba(90,70,30,.06);
+  /* ================= light theme: Steep (pairs with dark amber) =================
+     White paper, near-black ink, serif headlines at weight 400, one peach accent with sienna ink.
+     Flat mist cards with no shadow; only floating product pieces get a soft lift. */
+  html[data-theme="steep"], html[data-theme="steep"] #app, html[data-theme="steep"] #sheet, html[data-theme="steep"] #toast, html[data-theme="steep"] #scrim {
+    --paper: #ffffff; --paper-hi: #ffffff; --paper-lo: #f2f2f3; --fog: #fafafb; --ink: #17191c;
+    --peach: #fbe1d1; --sienna: #5d2a1a; --hair: #ececec;
+    --background: 0 0% 100%; --foreground: 216 10% 10%; --primary: 216 10% 10%; --primary-foreground: 0 0% 100%;
+    --secondary: 240 4% 95%; --muted-foreground: 223 7% 45%; --accent: 14 56% 23%; --border: 0 0% 93%;
+    --bg: var(--paper); --fg: var(--ink); --mut: #6b6f7a; --faint: #a3a6af;
+    --acc: var(--sienna); --acc-soft: var(--peach); --acc-2: #8a4a32;
+    --bord: var(--hair); --sec: var(--paper-lo); --good: hsl(152 45% 28%); --rose: hsl(0 55% 42%); --rose-soft: hsl(0 60% 95%);
+    --shadow-dash: 0 0 0 1px rgba(4,23,43,.05), 0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+    --lift: 0 0 0 1px rgba(4,23,43,.05), 0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+    --t1-bg: hsl(22 85% 93%); --t1-fg: hsl(14 56% 26%); --t2-bg: hsl(210 30% 93%); --t2-fg: hsl(210 35% 30%);
+    --t3-bg: hsl(0 45% 94%); --t3-fg: hsl(0 45% 34%); --t4-bg: hsl(150 22% 92%); --t4-fg: hsl(152 40% 24%);
+    --wa: hsl(142 64% 26%); --wa-soft: hsl(142 40% 92%); --scrim: rgba(23,25,28,.28);
+    --surface: var(--paper-lo); --gloss: none;
     --display: "Instrument Serif", Georgia, serif;
     color-scheme: light;
   }
-  html[data-theme="orson"], html[data-theme="orson"] body { background: var(--paper); }
-  html[data-theme="orson"] ::selection { background: rgba(255,199,56,.45); color: var(--ink); }
+  html[data-theme="steep"], html[data-theme="steep"] body { background: var(--paper); }
+  html[data-theme="steep"] ::selection { background: var(--peach); color: var(--sienna); }
 
   /* dashboard shell */
-  html[data-theme="orson"] #app, html[data-theme="orson"] #app .a-top, html[data-theme="orson"] #app .a-main { background: var(--paper); }
-  html[data-theme="orson"] #sheet { background: var(--paper-hi); }
-  html[data-theme="orson"] #app :is(.a-back, .am-ic, .a-avatar, .theme-btn) { border-color: rgba(48,47,44,.14); }
-  html[data-theme="orson"] #app :is(.a-back, .am-ic, .theme-btn):hover { border-color: rgba(48,47,44,.32); }
-  html[data-theme="orson"] #app .am-tab[aria-pressed="true"]::after { background: rgba(48,47,44,.8); }
-  html[data-theme="orson"] #app .am-tab[aria-pressed="true"]::before { border-color: rgba(48,47,44,.8); background: var(--paper); }
-  html[data-theme="orson"] #app .am-tile { color: var(--ink); background: var(--surface); border-color: rgba(48,47,44,.14); box-shadow: var(--gloss); }
-  html[data-theme="orson"] #app .am-plus i { background: var(--ink); color: var(--paper); }
-  html[data-theme="orson"] :is(#app .am-silver, .nav .pill, .cta .pill, .pva-acts .silver) { background: var(--ink); color: var(--paper); box-shadow: 0 8px 22px -12px rgba(48,47,44,.6); }
-  html[data-theme="orson"] :is(.nav .pill, .cta .pill):hover { box-shadow: 0 12px 28px -10px rgba(48,47,44,.55); }
-  html[data-theme="orson"] #app .am-date, html[data-theme="orson"] .pva-goals .date { background: var(--surface); border-color: rgba(48,47,44,.14); }
+  html[data-theme="steep"] #app, html[data-theme="steep"] #app .a-top, html[data-theme="steep"] #app .a-main { background: var(--paper); }
+  html[data-theme="steep"] #sheet { background: var(--paper); }
+  html[data-theme="steep"] #app :is(.a-back, .am-ic, .a-avatar, .theme-btn) { border-color: transparent; background: var(--paper-lo); box-shadow: none; }
+  html[data-theme="steep"] #app :is(.a-back, .am-ic, .theme-btn):hover { border-color: var(--ink); }
+  html[data-theme="steep"] #app .a-greet { letter-spacing: -.015em; }
+  html[data-theme="steep"] #app .am-tab[aria-pressed="true"]::after { background: var(--ink); }
+  html[data-theme="steep"] #app .am-tab[aria-pressed="true"]::before { border-color: var(--ink); background: var(--paper); }
+  html[data-theme="steep"] #app .am-tile { color: var(--ink); background: var(--paper-lo); border-color: transparent; box-shadow: none; }
+  html[data-theme="steep"] #app .am-plus i { background: var(--ink); color: #fff; }
+  html[data-theme="steep"] :is(#app .am-silver, .nav .pill, .cta .pill, .pva-acts .silver) { background: var(--ink); color: #fff; box-shadow: none; }
+  html[data-theme="steep"] :is(.nav .pill, .cta .pill):hover { box-shadow: 0 8px 24px -12px rgba(23,25,28,.5); }
+  html[data-theme="steep"] #app .am-date, html[data-theme="steep"] .pva-goals .date { background: var(--paper-lo); border-color: transparent; box-shadow: none; }
 
-  /* cards: paper, with the golden glow kept as Orson's signature */
-  html[data-theme="orson"] #app .am-card, html[data-theme="orson"] .pva-cards > div { border-color: rgba(48,47,44,.12); box-shadow: var(--gloss), 0 22px 40px -30px rgba(90,70,30,.45); }
-  html[data-theme="orson"] #app .am-spot::before, html[data-theme="orson"] .pva .c1::before { background: radial-gradient(circle at 55% 45%, rgba(255,226,140,.95) 0, rgba(255,199,56,.75) 18%, rgba(255,199,56,.25) 44%, transparent 68%); }
-  html[data-theme="orson"] #app .am-spot::after { background: radial-gradient(ellipse at 50% 10%, rgba(255,199,56,.25), transparent 70%); }
-  html[data-theme="orson"] #app .am-wbtn, html[data-theme="orson"] .pva .c1 .w { background: var(--ink); color: var(--paper); box-shadow: 0 0 22px rgba(255,199,56,.6); }
-  html[data-theme="orson"] #app .am-photo, html[data-theme="orson"] .pva .c2 { color: #fffaf0; }
-  html[data-theme="orson"] #app .am-chart, html[data-theme="orson"] .pva .c3 { background: radial-gradient(90% 70% at 50% -10%, rgba(255,199,56,.16), transparent 60%), var(--surface); }
-  html[data-theme="orson"] :is(#app .am-tag, .pva .c3 .tag) { border-color: rgba(48,47,44,.14); background: rgba(255,255,255,.5); }
-  html[data-theme="orson"] :is(#app .am-bar, .pva .bars i) { border-color: rgba(48,47,44,.1); background: linear-gradient(180deg, rgba(48,47,44,.12), rgba(48,47,44,.03)); box-shadow: none; }
-  html[data-theme="orson"] :is(#app .am-bar.now, .pva .bars i.now) { border-color: rgba(184,116,10,.45); background: linear-gradient(180deg, #ffd66b, var(--glow) 40%, #c98a12); box-shadow: 0 0 26px -6px rgba(255,199,56,.8); }
-  html[data-theme="orson"] .pva .bars em { color: var(--faint); }
-  html[data-theme="orson"] .pva-cards > div { background: var(--surface); }
-  html[data-theme="orson"] :is(#app .am-big small, .pva .big small) { color: var(--mut); }
-  html[data-theme="orson"] :is(#app .am-photo .am-big small, .pva .c2 .big small) { color: rgba(255,250,240,.8); }
-  html[data-theme="orson"] :is(#app .am-avg, .pva .bars .avg) { border-top-color: rgba(48,47,44,.4); }
-  html[data-theme="orson"] :is(#app .am-avg span, .pva .bars .avg b) { background: var(--ink); color: var(--paper); }
+  /* cards: flat mist, the "Your people" card is the one peach accent */
+  html[data-theme="steep"] #app .am-card, html[data-theme="steep"] .pva-cards > div { background: var(--paper-lo); border-color: transparent; box-shadow: none; }
+  html[data-theme="steep"] #app .am-card.am-spot, html[data-theme="steep"] .pva .c1 { background: var(--peach); color: var(--sienna); }
+  html[data-theme="steep"] #app .am-spot::before, html[data-theme="steep"] #app .am-spot::after, html[data-theme="steep"] .pva .c1::before { display: none; }
+  html[data-theme="steep"] :is(#app .am-spot .am-big small, .pva .c1 .big small) { color: rgba(93,42,26,.7); }
+  html[data-theme="steep"] #app .am-wbtn, html[data-theme="steep"] .pva .c1 .w { background: var(--sienna); color: var(--peach); box-shadow: none; }
+  html[data-theme="steep"] #app .am-photo, html[data-theme="steep"] .pva .c2 { color: #fffaf0; border-color: transparent;
+    background: radial-gradient(120% 95% at 72% 28%, #ffc75e 0, #f19a1b 34%, #b65706 68%, #5f2902 100%); }
+  html[data-theme="steep"] #app .am-chart, html[data-theme="steep"] .pva .c3 { background: var(--paper); box-shadow: var(--lift); }
+  html[data-theme="steep"] :is(#app .am-tag, .pva .c3 .tag) { border-color: var(--hair); background: var(--paper); }
+  html[data-theme="steep"] :is(#app .am-bar, .pva .bars i) { border: 0; background: var(--paper-lo); box-shadow: none; }
+  html[data-theme="steep"] :is(#app .am-bar.now, .pva .bars i.now) { border: 0; background: var(--peach); box-shadow: inset 0 2px 0 var(--sienna); }
+  html[data-theme="steep"] .pva .bars em { color: var(--faint); }
+  html[data-theme="steep"] #app .am-mo.now { color: var(--sienna); }
+  html[data-theme="steep"] :is(#app .am-big small, .pva .big small) { color: var(--mut); }
+  html[data-theme="steep"] :is(#app .am-photo .am-big small, .pva .c2 .big small) { color: rgba(255,250,240,.8); }
+  html[data-theme="steep"] :is(#app .am-avg, .pva .bars .avg) { border-top-color: rgba(23,25,28,.35); }
+  html[data-theme="steep"] :is(#app .am-avg span, .pva .bars .avg b) { background: var(--ink); color: #fff; }
 
   /* timeline */
-  html[data-theme="orson"] :is(#app .am-time, .pva-time) { background: var(--paper-hi); border-color: rgba(48,47,44,.1); }
-  html[data-theme="orson"] :is(#app .am-th .lk, .pva-time .lk) { text-decoration-color: rgba(48,47,44,.4); }
-  html[data-theme="orson"] #app .am-vl { background: rgba(48,47,44,.07); }
-  html[data-theme="orson"] :is(#app .am-pill, .pva-time .pill) { border-color: rgba(48,47,44,.12); background: var(--surface); box-shadow: var(--gloss), 0 10px 20px -14px rgba(90,70,30,.4); }
-  html[data-theme="orson"] #app .am-pill:hover { border-color: rgba(48,47,44,.3); }
-  html[data-theme="orson"] :is(#app .am-chip, .pva-time .chip) { background: rgba(48,47,44,.06); }
+  html[data-theme="steep"] :is(#app .am-time, .pva-time) { background: var(--paper-lo); border-color: transparent; }
+  html[data-theme="steep"] :is(#app .am-th .lk, .pva-time .lk) { text-decoration-color: transparent; }
+  html[data-theme="steep"] #app .am-th .lk:hover { text-decoration-color: var(--ink); }
+  html[data-theme="steep"] #app .am-vl { background: rgba(23,25,28,.06); }
+  html[data-theme="steep"] :is(#app .am-pill, .pva-time .pill) { border-color: transparent; background: var(--paper); box-shadow: var(--lift); }
+  html[data-theme="steep"] #app .am-pill:hover { border-color: var(--hair); }
+  html[data-theme="steep"] :is(#app .am-chip, .pva-time .chip) { background: var(--paper-lo); }
 
   /* lists, search, chips, sheets */
-  html[data-theme="orson"] #app :is(.guide-card, .sort-card, .gate-card) { background: var(--paper-hi); border-color: rgba(48,47,44,.12); }
-  html[data-theme="orson"] #app .guide-card .gi, html[data-theme="orson"] #app .guide-card .x:hover { background: var(--paper-lo); }
-  html[data-theme="orson"] #app .a-sec .tools .a-search { background: var(--paper-hi); border-color: rgba(48,47,44,.14); }
-  html[data-theme="orson"] #app .a-search:focus-within { border-color: rgba(184,116,10,.6); }
-  html[data-theme="orson"] #app :is(.ghost-btn, .a-select, .chip2) { background-color: var(--paper-hi); border-color: rgba(48,47,44,.14); }
-  html[data-theme="orson"] #app .ghost-btn:hover { border-color: rgba(184,116,10,.55); }
-  html[data-theme="orson"] #app .chip2[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-  html[data-theme="orson"] #app .pcard { border-color: rgba(48,47,44,.12); }
-  html[data-theme="orson"] #app .pcard:hover { border-color: rgba(184,116,10,.45); }
-  html[data-theme="orson"] #app .pcard .last { border-top-color: rgba(48,47,44,.1); }
-  html[data-theme="orson"] #app .tg { background: rgba(48,47,44,.06); }
-  html[data-theme="orson"] #app .tg.fresh { background: hsla(152, 45%, 28%, .1); }
-  html[data-theme="orson"] #app .tg.stale { background: hsla(0, 55%, 42%, .1); }
-  html[data-theme="orson"] #app .gate { background: rgba(240,235,221,.78); }
-  html[data-theme="orson"] :is(#app .pill, #sheet .pill, #sheet .s-btn, #sheet .g-chip.dark) { background: var(--ink); color: var(--paper); }
-  html[data-theme="orson"] #sheet :is(.s-f, .s-row, .imp-row, .imp-more, .d-row), html[data-theme="orson"] #app .d-row { border-top-color: rgba(48,47,44,.1); }
-  html[data-theme="orson"] #sheet :is(.x-table th, .x-table td) { border-color: rgba(48,47,44,.1); }
-  html[data-theme="orson"] #toast { background: var(--ink); color: var(--paper); }
-  html[data-theme="orson"] #toast .t-act { background: rgba(255,255,255,.14); color: var(--paper); }
-  html[data-theme="orson"] :is(.exp-fmt, .s-check) input { accent-color: #b8740a; }
-  html[data-theme="orson"] .appview.dragging::after { background: rgba(248,244,234,.92); }
+  html[data-theme="steep"] #app :is(.guide-card, .sort-card) { background: var(--paper-lo); border-color: transparent; }
+  html[data-theme="steep"] #app .gate-card { background: var(--paper); border-color: transparent; box-shadow: var(--lift); }
+  html[data-theme="steep"] #app .guide-card .gi, html[data-theme="steep"] #app .guide-card .x:hover { background: var(--paper); }
+  html[data-theme="steep"] #app .a-sec .tools .a-search { background: var(--paper); border-color: var(--hair); border-radius: 16px; }
+  html[data-theme="steep"] #app .a-search:focus-within { border-color: var(--ink); }
+  html[data-theme="steep"] #app :is(.ghost-btn, .a-select, .chip2) { background-color: transparent; border-color: var(--ink); color: var(--ink); }
+  html[data-theme="steep"] #app .chip2 { border-color: var(--hair); color: var(--mut); }
+  html[data-theme="steep"] #app .ghost-btn:hover { background-color: var(--paper-lo); color: var(--ink); border-color: var(--ink); }
+  html[data-theme="steep"] #app .chip2[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+  html[data-theme="steep"] #app .pcard { background: var(--paper-lo); border-color: transparent; box-shadow: none; }
+  html[data-theme="steep"] #app .pcard:hover { border-color: transparent; background: #ececee; }
+  html[data-theme="steep"] #app .pcard .last { border-top-color: rgba(23,25,28,.08); }
+  html[data-theme="steep"] #app .tg { background: var(--paper); }
+  html[data-theme="steep"] #app .tg.fresh { background: hsla(152, 45%, 28%, .1); }
+  html[data-theme="steep"] #app .tg.stale { background: hsla(0, 55%, 42%, .1); }
+  html[data-theme="steep"] #app .gate { background: rgba(255,255,255,.8); }
+  html[data-theme="steep"] :is(#app .pill, #sheet .pill, #sheet .s-btn, #sheet .g-chip.dark) { background: var(--ink); color: #fff; }
+  html[data-theme="steep"] #sheet :is(.s-box, .s-group) { background: var(--paper-lo); border-color: transparent; }
+  html[data-theme="steep"] #sheet :is(.s-f, .s-row, .imp-row, .imp-more, .d-row), html[data-theme="steep"] #app .d-row { border-top-color: rgba(23,25,28,.08); }
+  html[data-theme="steep"] #sheet :is(.x-table th, .x-table td) { border-color: var(--hair); }
+  html[data-theme="steep"] #toast { background: var(--ink); color: #fff; }
+  html[data-theme="steep"] #toast .t-act { background: rgba(255,255,255,.14); color: #fff; }
+  html[data-theme="steep"] :is(.exp-fmt, .s-check) input { accent-color: var(--ink); }
+  html[data-theme="steep"] .appview.dragging::after { background: rgba(251,225,209,.92); color: var(--sienna); border-color: var(--sienna); }
 
-  /* landing preview (mini dashboard) */
-  html[data-theme="orson"] .pva { --fg: var(--ink); --mut: #5f5b51; --rose: hsl(0 55% 42%);
-    --t1-bg: hsl(40 70% 88%); --t1-fg: hsl(36 80% 26%); --t2-bg: hsl(205 35% 89%); --t2-fg: hsl(205 45% 28%);
-    --t3-bg: hsl(0 45% 91%); --t3-fg: hsl(0 45% 34%); --t4-bg: hsl(150 25% 88%); --t4-fg: hsl(152 40% 24%);
-    background: var(--paper); border-color: rgba(48,47,44,.1); }
-  html[data-theme="orson"] .pva-tabs b { border-bottom-color: rgba(48,47,44,.8); }
-  html[data-theme="orson"] :is(.pva-ic, .pva-user, .pva-st > i) { border-color: rgba(48,47,44,.14); background: var(--surface); color: var(--ink); box-shadow: none; }
-  html[data-theme="orson"] :is(.pva-head, .pva-goals) { border-bottom-color: rgba(48,47,44,.1); }
-  html[data-theme="orson"] :is(.pva-st, .pva-time .c) { border-left-color: rgba(48,47,44,.1); }
-  html[data-theme="orson"] .pva-acts .plus i { background: var(--ink); color: var(--paper); }
+  /* landing preview (mini dashboard), floating on white */
+  html[data-theme="steep"] .pva { --fg: var(--ink); --mut: #6b6f7a; --rose: hsl(0 55% 42%);
+    --t1-bg: hsl(22 85% 93%); --t1-fg: hsl(14 56% 26%); --t2-bg: hsl(210 30% 93%); --t2-fg: hsl(210 35% 30%);
+    --t3-bg: hsl(0 45% 94%); --t3-fg: hsl(0 45% 34%); --t4-bg: hsl(150 22% 92%); --t4-fg: hsl(152 40% 24%);
+    background: var(--paper); border-color: transparent; }
+  html[data-theme="steep"] .pva-tabs b { border-bottom-color: var(--ink); }
+  html[data-theme="steep"] :is(.pva-ic, .pva-user, .pva-st > i) { border-color: transparent; background: var(--paper-lo); color: var(--ink); box-shadow: none; }
+  html[data-theme="steep"] :is(.pva-head, .pva-goals) { border-bottom-color: var(--hair); }
+  html[data-theme="steep"] :is(.pva-st, .pva-time .c) { border-left-color: var(--hair); }
+  html[data-theme="steep"] .pva-acts .plus i { background: var(--ink); color: #fff; }
 
-  /* landing: golden hero glow, paper surfaces, serif headings */
-  html[data-theme="orson"] .backdrop::before { background: radial-gradient(41% 41% at 50% 100%, rgba(255,199,56,.55), rgba(248,233,226,0) 100%), radial-gradient(45% 30% at 50% 0%, rgba(255,255,255,.6), transparent 70%); }
-  html[data-theme="orson"] :is(.headline, .h2) { letter-spacing: -.02em; line-height: 1.04; }
-  html[data-theme="orson"] :is(.badge, .eyebrow) { background: var(--surface); border-color: rgba(48,47,44,.14); color: var(--mut); }
-  html[data-theme="orson"] .glass { background: rgba(255,255,255,.4); border-color: rgba(255,255,255,.85); box-shadow: 0 40px 90px -36px rgba(90,70,30,.45); }
-  html[data-theme="orson"] :is(.feat, .device-in) { border-color: rgba(48,47,44,.12); }
-  html[data-theme="orson"] .feat:hover { border-color: rgba(184,116,10,.4); }
-  html[data-theme="orson"] :is(.feat .mini, .device-in .row) { border-color: rgba(48,47,44,.1); }
-  html[data-theme="orson"] .privacy { background: var(--paper-lo); }
-  html[data-theme="orson"] .device { background: rgba(255,255,255,.35); border-color: rgba(48,47,44,.1); box-shadow: 0 30px 70px -34px rgba(90,70,30,.4); }
-  html[data-theme="orson"] .closing { background: radial-gradient(45% 60% at 50% 100%, rgba(255,199,56,.28), transparent 70%); }
-  html[data-theme="orson"] .theme-btn { background: var(--surface); border-color: rgba(48,47,44,.14); color: var(--ink); }
+  /* landing: white canvas, regular-weight serif, quiet chrome */
+  html[data-theme="steep"] .backdrop::before { background: radial-gradient(40% 30% at 50% 100%, rgba(251,225,209,.7), transparent 75%); }
+  html[data-theme="steep"] :is(.headline, .h2) { letter-spacing: -.025em; line-height: 1.04; font-weight: 400; }
+  html[data-theme="steep"] :is(.badge, .eyebrow) { background: var(--paper-lo); border-color: transparent; color: var(--mut); box-shadow: none; }
+  html[data-theme="steep"] .glass { background: rgba(255,255,255,.6); border-color: var(--hair); box-shadow: var(--lift); }
+  html[data-theme="steep"] :is(.feat, .device-in) { background: var(--paper-lo); border-color: transparent; box-shadow: none; }
+  html[data-theme="steep"] .feat:hover { border-color: transparent; }
+  html[data-theme="steep"] .feat .icon { color: var(--ink); }
+  html[data-theme="steep"] :is(.feat .mini, .device-in .row) { border-color: rgba(23,25,28,.08); }
+  html[data-theme="steep"] .privacy { background: var(--fog); }
+  html[data-theme="steep"] .checks li .ck { background: var(--peach); color: var(--sienna); }
+  html[data-theme="steep"] .device { background: var(--paper); border-color: transparent; box-shadow: var(--lift); }
+  html[data-theme="steep"] .device-in .big { color: var(--ink); }
+  html[data-theme="steep"] .closing { background: none; }
+  html[data-theme="steep"] .theme-btn { background: var(--paper-lo); border-color: transparent; color: var(--ink); }
+  html[data-theme="steep"] .logo .mark { stroke: var(--ink); }
 
   /* the light/dark switch: sun while dark, moon while light */
   .theme-btn .t-light, .theme-btn .t-amoled, .theme-btn .t-mono { display: none; }
-  html[data-theme="amber"] .theme-btn .t-light, html[data-theme="orson"] .theme-btn .t-amoled { display: block; }
+  html[data-theme="amber"] .theme-btn .t-light, html[data-theme="steep"] .theme-btn .t-amoled { display: block; }
   #app .theme-btn { width: 40px; height: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,.1); background: var(--surface); box-shadow: var(--gloss); color: var(--fg); }
 </style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2186,7 +2199,7 @@
       '<div class="s-box"><h4><label for="set-cc">Country code</label></h4>'+
         '<div style="display:flex;align-items:center;gap:8px"><span style="font-size:1rem;color:var(--mut)">+</span><input class="s-input" id="set-cc" inputmode="numeric" maxlength="4" style="max-width:110px" value="'+esc(String(store.cc || "91"))+'"></div>'+
         '<div class="s-cap">Added to phone numbers saved without one, so Call, Message and WhatsApp reach the right number. India is 91.</div></div>'+
-      '<div class="s-box"><h4>Appearance</h4>'+themeRadio("", "Match my device", "Light by day, dark at night if your phone does that.")+themeRadio("light", "Light", "Warm parchment with a golden glow.")+themeRadio("dark", "Dark", "Near-black with amber light.")+'</div>'+
+      '<div class="s-box"><h4>Appearance</h4>'+themeRadio("", "Match my device", "Light by day, dark at night if your phone does that.")+themeRadio("light", "Light", "Clean white with a warm peach accent.")+themeRadio("dark", "Dark", "Near-black with amber light.")+'</div>'+
       installHTML()+
       '<div class="s-box"><h4>Contacts</h4>'+
         '<label class="s-check" for="opt-samples" style="margin-top:4px"><input type="checkbox" id="opt-samples"'+(store.hideSamples?"":" checked")+'><span>Show the 18 sample contacts<small>Turn this off once your own contacts are in.</small></span></label>'+
@@ -3031,15 +3044,15 @@
 
   /* ---------- open / close the dashboard ---------- */
   var isOpen = false, closeT;
-  /* themes: "light" = Orson parchment, "dark" = amber, "" = follow the device */
+  /* themes: "light" = Steep white and peach, "dark" = amber, "" = follow the device */
   var THEME_NAMES = { "": "Matching your device", light: "Light theme", dark: "Dark theme" };
   var lightMQ = window.matchMedia ? matchMedia("(prefers-color-scheme: light)") : null;
   function themePref(){ return store.theme === "light" || store.theme === "dark" ? store.theme : ""; }
   function resolvedTheme(){ var t = themePref(); return t || (lightMQ && lightMQ.matches ? "light" : "dark"); }
   function applyTheme(){
     var light = resolvedTheme() === "light";
-    document.documentElement.setAttribute("data-theme", light ? "orson" : "amber");
-    var mt = document.querySelector('meta[name="theme-color"]'); if (mt) mt.setAttribute("content", light ? "#f0ebdd" : "#0b0b0c");
+    document.documentElement.setAttribute("data-theme", light ? "steep" : "amber");
+    var mt = document.querySelector('meta[name="theme-color"]'); if (mt) mt.setAttribute("content", light ? "#ffffff" : "#0b0b0c");
     document.querySelectorAll('input[name="theme-pick"]').forEach(function(r){ r.checked = r.value === themePref(); });
     if (window.__forestTheme) window.__forestTheme();
   }
@@ -3150,7 +3163,7 @@
     return s;
   }
 
-  function night(){ return document.documentElement.getAttribute("data-theme") !== "orson"; }
+  function night(){ return document.documentElement.getAttribute("data-theme") !== "steep"; }
   var NIGHT = [[30, 10, 11], [28, 10, 8], [26, 12, 6], [24, 14, 4]];
   var LAYERS = [
     { n: 1/30, h: [.10, .19], col: [178, 18, 80], blur: 1.4, amp: .010, zone: "all",   pine: .6 },
@@ -3199,7 +3212,7 @@
     ctx.clearRect(0, 0, W, H);
     var sky = ctx.createLinearGradient(0, H * .3, 0, H);
     if (night()) { sky.addColorStop(0, "hsla(34,90%,45%,0)"); sky.addColorStop(1, "hsla(30,90%,40%,.3)"); }
-    else { sky.addColorStop(0, "hsla(44,60%,90%,0)"); sky.addColorStop(1, "hsla(44,100%,61%,.28)"); }
+    else { sky.addColorStop(0, "hsla(0,0%,100%,0)"); sky.addColorStop(1, "hsla(22,85%,90%,.35)"); }
     ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
     trees.forEach(function(list, li){
       list.forEach(function(tr){

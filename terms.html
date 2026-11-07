@@ -8,8 +8,8 @@
 <script>
 (function(){ var t = ""; try { t = (JSON.parse(localStorage.getItem("people-dashboard-v1") || "{}").theme) || ""; } catch(e) {}
   if (t !== "light" && t !== "dark") t = (window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", t === "light" ? "orson" : "amber");
-  if (t === "light") document.querySelector('meta[name="theme-color"]').setAttribute("content", "#f0ebdd"); })();
+  document.documentElement.setAttribute("data-theme", t === "light" ? "steep" : "amber");
+  if (t === "light") document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff"); })();
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,16 +53,17 @@
   a:focus-visible, .back:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
   footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--bord); color: var(--mut); font-size: .85rem; display: flex; gap: 16px; flex-wrap: wrap; }
   footer a { color: inherit; }
-  /* light theme: Orson parchment */
-  html[data-theme="orson"] { --bg: #f0ebdd; --fg: #302f2c; --text: #45433d; --mut: #5f5b51; --acc: #8a5300;
-    --acc-soft: rgba(255,199,56,.2); --bord: rgba(48,47,44,.12);
-    --surface: linear-gradient(180deg, #fbf8f0, #f3eee1); --gloss: inset 0 1px 0 rgba(255,255,255,.9), 0 1px 2px rgba(90,70,30,.06); color-scheme: light; }
-  html[data-theme="orson"] body { background-image: radial-gradient(60% 40% at 50% 0%, rgba(255,199,56,.3), transparent 70%); }
-  html[data-theme="orson"] :is(h1, h2) { font-family: "Instrument Serif", Georgia, serif; letter-spacing: -.015em; }
-  html[data-theme="orson"] ::selection { background: rgba(255,199,56,.45); color: #302f2c; }
-  html[data-theme="orson"] :is(.back, .card) { border-color: rgba(48,47,44,.14); }
-  html[data-theme="orson"] .back:hover { border-color: rgba(48,47,44,.32); }
-  html[data-theme="orson"] .card::before { background: radial-gradient(circle, rgba(255,199,56,.55), transparent 70%); }
+  /* light theme: Steep */
+  html[data-theme="steep"] { --bg: #ffffff; --fg: #17191c; --text: #2c2f34; --mut: #6b6f7a; --acc: #5d2a1a;
+    --acc-soft: #fbe1d1; --bord: #ececec; --surface: #f2f2f3; --gloss: none; color-scheme: light; }
+  html[data-theme="steep"] body { background-image: none; }
+  html[data-theme="steep"] :is(h1, h2) { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; letter-spacing: -.015em; }
+  html[data-theme="steep"] ::selection { background: #fbe1d1; color: #5d2a1a; }
+  html[data-theme="steep"] .back { border-color: #17191c; background: transparent; }
+  html[data-theme="steep"] .back:hover { background: #f2f2f3; }
+  html[data-theme="steep"] .card { background: #fbe1d1; border-color: transparent; }
+  html[data-theme="steep"] .card p { color: #5d2a1a; }
+  html[data-theme="steep"] .card::before { display: none; }
 </style>
 </head>
 <body>
