@@ -1,6 +1,6 @@
 /* People — offline support.
    The app shell is cached on install; fonts and the spreadsheet reader are cached the first time they load. */
-const CACHE = "people-v17";
+const CACHE = "people-v18";
 const SHARE_CACHE = "people-share";
 const SHELL = [
   "./",
